@@ -11,7 +11,7 @@ use Drupal\civicrm_entity_rules_example\Event\CivicrmContactStatusUpdatedEvent;
  * Implements hook_civicrm_custom().
  */
 function civicrm_entity_rules_example_civicrm_custom($op, $groupID, $entityID, &$params) {
-  if ($op != 'create' && $op != 'edit' && $groupID != 2) {
+  if ($op != 'create' && $op != 'edit') {
     return;
   }
 
