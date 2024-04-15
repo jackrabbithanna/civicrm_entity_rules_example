@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Contains civicrm_tweaks.module.
+ */
+
+use Drupal\civicrm_entity_rules_example\Event\CivicrmContactStatusUpdatedEvent;
+
+/**
+ * Implements hook_civicrm_custom().
+ */
+function civicrm_entity_rules_example_civicrm_custom($op, $groupID, $entityID, &$params) {
+  if ($op != 'create' && $op != 'edit' && $groupID != 2) {
+    return;
+  }
+
+  foreach ($params as $field) {
+    if ($field['column_name'] == 'custom_status_26' && !empty($field['value'])) {
+      $event = new CivicrmContactStatusUpdatedEvent($entityID, $field['value']);
+      $event_dispatcher = \Drupal::service('event_dispatcher');
+      $event_dispatcher->dispatch($event, CivicrmContactStatusUpdatedEvent::EVENT_NAME);
+      break;
+    }
+  }
+}

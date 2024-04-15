@@ -1,0 +1,7 @@
+name: 'CiviCRM Entity Rules Example'
+type: module
+description: 'Example custom Rules event, conditions, and actions'
+core_version_requirement: '^9 || ^10'
+package: 'CiviCRM'
+dependencies:
+  - civicrm_entity
